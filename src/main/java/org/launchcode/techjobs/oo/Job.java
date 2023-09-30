@@ -17,12 +17,12 @@ public class Job {
     //  other five fields. The second constructor should also call the first in order to initialize
     //  the 'id' field.
 
-    public Job(int id) {
-        this.id = nextId;
+    public Job() {
+        id = nextId;
         nextId++;
     }
 
-    public Job(String name, String employer, String location, String positionType, String coreCompetency) {
+    public Job(String name, Employer employer, Location location, PositionType positionType, CoreCompetency coreCompetency) {
         this.name = name;
         this.employer = employer;
         this.location = location;
@@ -45,7 +45,7 @@ public class Job {
     public int hashCode() {
         return Objects.hash(id);
     }
-    
+
     // TODO: Add getters for each field EXCEPT nextId. Add setters for each field EXCEPT nextID
     //  and id.
 
