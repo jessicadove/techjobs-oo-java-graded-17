@@ -34,4 +34,26 @@ public class JobTest {
         assertNotEquals(job1, job2);
     }
 
+    @Test
+    public void testToStringStartsAndEndsWithNewLine() {
+        Job testJob = new Job("Mad Hatter", new Employer("Self-employed"), new Location("Wonderland"), new PositionType("Crazy maker"), new CoreCompetency("Dexterity"));
+        String output = System.lineSeparator() + System.lineSeparator();
+        assertEquals(output, System.lineSeparator() + System.lineSeparator());
+    }
+
+    @Test
+    public void testToStringContainsCorrectLabelsAndData() {
+        Job testJob = new Job("Mad Hatter", new Employer("Self-employed"), new Location("Wonderland"), new PositionType("Crazy maker"), new CoreCompetency("Dexterity"));
+        String output = "ID: " + testJob.getId() + System.lineSeparator() + "Name: " + testJob.getName() + System.lineSeparator() + "Employer: " + testJob.getEmployer().getValue() + System.lineSeparator() + "Location: " + testJob.getLocation().getValue() + System.lineSeparator() + "Position Type: " + testJob.getPositionType().getValue() + System.lineSeparator() + "Core Competency: " + testJob.getCoreCompetency().getValue();
+        assertEquals(output,"ID: " + testJob.getId() + System.lineSeparator() + "Name: " + testJob.getName() + System.lineSeparator() + "Employer: " + testJob.getEmployer().getValue() + System.lineSeparator() + "Location: " + testJob.getLocation().getValue() + System.lineSeparator() + "Position Type: " + testJob.getPositionType().getValue() + System.lineSeparator() + "Core Competency: " + testJob.getCoreCompetency().getValue());
+    }
+
+    @Test
+    public void testToStringHandlesEmptyField() {
+        Job testJob = new Job("Mad Hatter",new Employer(""), new Location("Wonderland"), new PositionType("Crazy maker"), new CoreCompetency("Dexterity"));
+        String errorMsg = "Data not available";
+        String output = System.lineSeparator() + "ID: " + testJob.getId() + System.lineSeparator() + "Name: " + testJob.getName() + System.lineSeparator() + "Employer: " + errorMsg + System.lineSeparator() + "Location: " + testJob.getLocation().getValue() + System.lineSeparator() + "Position Type: " + testJob.getPositionType().getValue() + System.lineSeparator() + "Core Competency: " + testJob.getCoreCompetency().getValue() + System.lineSeparator();
+        assertEquals(output, testJob.toString());
+    }
+
 }
